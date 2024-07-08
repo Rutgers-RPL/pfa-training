@@ -64,4 +64,43 @@ Post-flight analysis is a key part of the iterative engineering process. Looking
 
 ## Part 2: Simple Python Exercise
 
+```Shell
+python --version
+```
+
+```Shell
+python -c "print('hello world!')"
+```
+
+```Shell
+cd .\Projects\RRPL\
+```
+
+```Shell
+mkdir py-exercises
+```
+
+```Shell
+cd .\py-exercises\
+```
+
+```Shell
+New-Item -ItemType File -Name "ex1.py"
+```
+
+```Shell
+notepad.exe .\ex1.py
+```
+
+```Shell
+code .\ex1.py
+```
+
+```Python
+```
+
 ## Part 3: Simple Jupyter Exercise
+
+```Shell
+jupyter notebook
+```
