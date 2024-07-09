@@ -8,6 +8,8 @@ Post-flight analysis is a key part of the iterative engineering process. Looking
 
 Python is one of the most widely-used programming languages in the computer engineering and computer science industry, and for good reason; it has very simple syntax that beginners can read and understand, is very easy to develop and test code with, and has built-in support for many powerful packages that assist the development process greatly. It’s especially useful for post-flight data analysis, in which case Python is able to provide powerful data visualization tools (like graphs and charts), as well as interactive interfaces and automation services to make interacting and analyzing our data even easier. By taking advantage of these features of Python, post-flight data analysis can be made far simpler and efficient.
 
+![Error Displaying Image!](./gfx/pythonlogo.png "python logo")
+
 #### Compiled vs. Interpreted Languages
 
 
@@ -17,11 +19,18 @@ Python is an interpreted programming language, just like Javascript and R. “In
 
 A compiled language, over time, will be faster than an interpreted one; after all, it’s easier and faster for a computer to understand its own language than have everything translated line-by-line. Additionally, more errors will be caught at compile time as opposed to runtime, meaning some mistakes are caught earlier. However, if you make a lot of changes to the code, and the language needs to constantly re-translate (or re-compile) the entire program every time a change is made, this can become a huge time-waster for a programmer. With an interpreted language like Python, changes to the code will mean relatively little change in runtimes, making it an ideal option for our testing and development.
 
+Below you can see a little bit of what a compiled and interpreted language do under the hood:
+
+![Error Displaying Image!](./gfx/compiler.png "Compiler diagram")
+
+![Error Displaying Image!](./gfx/interpreter.png "Interpreter diagram")
+
 
 #### Packages and Modules
 
 Using packages, you can incorporate python code written by others into your own program. These packages, oftentimes, are downloaded off the internet to your machine and stored locally so your code can pull from them. Packages are simply groups of “modules,” where each module is a python file with useful routines written into them that can be pulled into your main program. When you incorporate a module or a package into your program, they become “dependencies.” As the name implies, a Python program needs all of its dependencies at runtime in order to function correctly, or oftentimes, function at all. Sometimes modules include packages or modules within themselves; in this case, you still need to find and download these modules for your program to function. This means that dependencies can have dependencies as well!
 
+![Error Displaying Image!](./gfx/structure-of-packages.png "Package and module diagram")
 
 #### Installing Packages (pip)
 
