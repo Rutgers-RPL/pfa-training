@@ -64,7 +64,7 @@ Python and Conda are used all the time for post flight analysis. We use python a
     conda --version
     ```
     The output should look something like the following.
-    ![Error Displaying Image!](.gfx/Conda_Install_Verification.png "Installation Verification")
+    ![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
 
     If the output states that conda is not recognized, run the test scripts located in this Git repository and execute the one corresponding to your system. If the output states that conda is not installed, double-check your conda installation. If it says that conda is installed but not initialized, refer to the instructions above to ensure you have initialized conda in your system terminal.
 
