@@ -19,9 +19,11 @@ Python is an interpreted programming language, just like Javascript and R. “In
 
 A compiled language, over time, will be faster than an interpreted one; after all, it’s easier and faster for a computer to understand its own language than have everything translated line-by-line. Additionally, more errors will be caught at compile time as opposed to runtime, meaning some mistakes are caught earlier. However, if you make a lot of changes to the code, and the language needs to constantly re-translate (or re-compile) the entire program every time a change is made, this can become a huge time-waster for a programmer. With an interpreted language like Python, changes to the code will mean relatively little change in runtimes, making it an ideal option for our testing and development.
 
-Below you can see a little bit of what a compiled and interpreted language do under the hood:
+This is how a compiled language behaves, in general:
 
 ![Error Displaying Image!](./gfx/compiler.png "Compiler diagram")
+
+And similarly, this is how an interpreted language behaves.
 
 ![Error Displaying Image!](./gfx/interpreter.png "Interpreter diagram")
 
