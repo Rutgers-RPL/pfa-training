@@ -6,18 +6,18 @@ Post-flight analysis is a key part of the iterative engineering process. Looking
 
 ### 0.1: What is Python?
 
-Python is one of the most widely-used programming languages in the computer engineering and computer science industry, and for good reason; it has very simple syntax that beginners can read and understand, is very easy to develop and test code with, and has built-in support for many powerful packages that assist the development process greatly. It’s especially useful for post-flight data analysis, in which case Python is able to provide powerful data visualization tools (like graphs and charts), as well as interactive interfaces and automation services to make interacting and analyzing our data even easier. By taking advantage of these features of Python, post-flight data analysis can be made far simpler and efficient.
+Python is one of the most widely-used programming languages in the computer engineering and computer science industry, and for good reason; it has a very simple syntax that beginners can read and understand, is very easy to develop and test code with, and has built-in support for many powerful packages that assist the development process greatly. It’s especially useful for post-flight data analysis, in which case Python is able to provide powerful data visualization tools (like graphs and charts), as well as interactive interfaces and automation services to make interacting and analyzing our data even easier. By taking advantage of these features of Python, post-flight data analysis can be made far simpler and efficient.
 
-![Error Displaying Image!](./gfx/pythonlogo.png "python logo")
+![Error Displaying Image!](./gfx/Pythonlogo.png "Python logo")
 
 #### Compiled vs. Interpreted Languages
-
 
 
 Python is an interpreted programming language, just like Javascript and R. “Interpreted” means that when you run your code, your program is evaluated and executed line by line, every single time you run the program. This isn’t always the case; certain programming languages, like C, C++, and Rust, are called compiled languages. Compiled languages are translated (or compiled) into a more computer-friendly format the first time they’re run, and this new version is used every time the program is run.
 
 
-A compiled language, over time, will be faster than an interpreted one; after all, it’s easier and faster for a computer to understand its own language than have everything translated line-by-line. Additionally, more errors will be caught at compile time as opposed to runtime, meaning some mistakes are caught earlier. However, if you make a lot of changes to the code, and the language needs to constantly re-translate (or re-compile) the entire program every time a change is made, this can become a huge time-waster for a programmer. With an interpreted language like Python, changes to the code will mean relatively little change in runtimes, making it an ideal option for our testing and development.
+A compiled language, over time, will be faster than an interpreted one; after all, it’s easier and faster for a computer to understand its own language than to have everything translated line-by-line. Additionally, more errors will be caught at compile time as opposed to runtime, meaning some mistakes are caught earlier. However, if you make a lot of changes to the code, and the language needs to constantly re-translate (or re-compile) the entire program every time a change is made, this can become a huge time-waster for a programmer. This makes an interpreted language like Python perfect for testing and development.
+
 
 This is how a compiled language behaves, in general:
 
@@ -30,7 +30,7 @@ And similarly, this is how an interpreted language behaves.
 
 #### Packages and Modules
 
-Using packages, you can incorporate python code written by others into your own program. These packages, oftentimes, are downloaded off the internet to your machine and stored locally so your code can pull from them. Packages are simply groups of “modules,” where each module is a python file with useful routines written into them that can be pulled into your main program. When you incorporate a module or a package into your program, they become “dependencies.” As the name implies, a Python program needs all of its dependencies at runtime in order to function correctly, or oftentimes, function at all. Sometimes modules include packages or modules within themselves; in this case, you still need to find and download these modules for your program to function. This means that dependencies can have dependencies as well!
+Using packages, you can incorporate Python code written by others into your own program. These packages, oftentimes, are downloaded off the internet to your machine and stored locally so your code can pull from them. Packages are simply groups of “modules,” where each module is a Python file with useful routines written into them that can be pulled into your main program. When you incorporate a module or a package into your program, they become “dependencies.” As the name implies, a Python program needs all of its dependencies at runtime in order to function correctly, or oftentimes, function at all. Sometimes modules include packages or modules within themselves; in this case, you still need to find and download these modules for your program to function. This means that dependencies can have dependencies as well!
 
 ![Error Displaying Image!](./gfx/structure-of-packages.png "Package and module diagram")
 
@@ -38,61 +38,72 @@ Using packages, you can incorporate python code written by others into your own 
 
 
 
-PIP is one of the most common tools for package management in python. With one-line terminal commands, packages can be downloaded to your machine, meaning the only thing you need to do is import the code into your file. However, some projects may require certain packages while others require different packages; in this case, installing all the packages for every project you’ll work on is messy and a waste of resources. A simple solution is venv, a “virtual environment” creator for python, which essentially allows you to create a separate space for different projects and sets of packages. This means multiple package and module installations won’t clutter up and pollute your build environment, whatever it may be for that project.
+PIP is one of the most common tools for package management in Python. With one-line terminal commands, packages can be downloaded to your machine, meaning the only thing you need to do is import the code into your file. However, some projects may require certain packages while others require different packages; in this case, installing all the packages for every project you’ll work on is messy and a waste of resources. A simple solution is venv, a “virtual environment” creator for Python, which essentially allows you to create a separate space for different projects and sets of packages. This means multiple package and module installations won’t clutter up and pollute your build environment, whatever it may be for that project.
 
 
-Pip, however, has no built-in support for packages and modules written outside of the standard python libraries, and also has no built-in isolated build environment support; it relies on outside tools like Venv to achieve this. This means that although using PIP will work for some time, it is good to pursue other package management tools that have more dynamic package and build environment support, such as Conda.
+Pip, however, has no built-in support for packages and modules written outside of the standard Python libraries, and also has no built-in isolated build environment support; it relies on outside tools like Venv to achieve this. This means that although using PIP will work for some time, it is good to pursue other package management tools that have more dynamic packages and build environment support, such as Conda.
 
 
 ### 0.2: What is Conda?
 
-Conda is an open-source package management and envionrnment management system. This tool is used to install, run, and update software packages and dependencies. Conda and pip both can be used to install packages and dependencies but conda is perfered becasue it allows the users to create virtual enviornments for different projects while being more efficient and easy to use.
+Conda is an open-source package management and environment management system. This tool installs, runs, and updates software packages and dependencies. Conda and pip can be used to install packages and dependencies but conda is preferred because it allows the users to create virtual environments for different projects while being more efficient and easy to use.
 
 #### Managing Multiple Environments
 
-As stated above conda allows the user to create different virtual enviornments. A virtual enviornment is an isolated space where you can install and manage a specific set of packages and dependencies without affection other projects on your system. Each enviornment has its own directory, seperate from the system's global enviornment, containing all the necessary files and libraries required for a particula project. This isolation helps prevent conflicts between different projects, allowing you to use different version of packages and Python for each project. Enviornments are especially useful for managing dependencies and ensuring that your projects are reproducible and consisten across different systems. Conda allows you to switch between these different envrionemnts and install different version of python or packages in different envionrments efficnetly and easily. 
+As stated above conda allows the user to create different virtual environments. A virtual environment is an isolated space where you can install and manage a specific set of packages and dependencies without affecting other projects on your system. Each environment has its directory, separate from the system's global environment, containing all the necessary files and libraries required for a particular project. This isolation helps prevent conflicts between different projects, allowing you to use different versions of packages and Python for each project. Environments are especially useful for managing dependencies and ensuring that your projects are reproducible and consistent across different systems. Conda allows you to switch between these different environments and install different versions of Python or packages in different environments efficiently and easily.
+
 
 #### Controling Dependencies and Conflicts
 
-It is important to have the ability to control the version of dependecies installed for your project because of how different packages when used together rely on others. A good visualation for this is called a dependency graph which can be seen bellow. A dependency graph is a visual representation of the relationships between software packages and their dependencies. In this graph, each node represents a packaged, and each edge represents a dependency relationship. For example, if Packae A depdends on Package B, there will be a directed edge from A to B. This graph helps in understanding how packages are interconnected and which packages rely on others. Sometimes, different packages require different versions of the same dependency. For instance, Package A might need version 1.2 of a library, while Package B requries version 2.0. This can lead to dependency clashes, where it becomes impossible to satisfy all requirements simultaneously. Additionaly, packages or their verisons can become deprecated over time, meaning they are no longer maintained or recommended for use. This is where conda excels. Conda addresses these issues with a dependency resolver that analyzes the dependency graph and finds valid "transactions" to install, change, or remove packages. The solver ensures that all dependencies are met and compatible versions are used. When you issue a command to install or update a package, Conda's solver determines the best set of actions to maintain a functional and conflict-free enviornment. This process helps in avoidning dependency clashes and ensures that your enviornment remains stable and consistent.
+It is important to have the ability to control the version of dependencies installed for your project because of how different packages when used together rely on others. A good visualization for this is called a dependency graph which can be seen below. A dependency graph is a visual representation of the relationships between software packages and their dependencies. In this graph, each node represents a package, and each edge represents a dependency relationship. For example, if Package A depends on Package B, there will be a directed edge from A to B. This graph helps in understanding how packages are interconnected and which packages rely on others. Sometimes, different packages require different versions of the same dependency. For instance, Package A might need version 1.2 of a library, while Package B requires version 2.0. This can lead to dependency clashes, where it becomes impossible to satisfy all requirements simultaneously. Additionally, packages or their versions can become deprecated over time, meaning they are no longer maintained or recommended for use. This is where conda excels. Conda addresses these issues with a dependency resolver that analyzes the dependency graph and finds valid "transactions" to install, change, or remove packages. The solver ensures that all dependencies are met and compatible versions are used. When you issue a command to install or update a package, Conda's solver determines the best set of actions to maintain a functional and conflict-free environment. This process helps in avoiding dependency clashes and ensures that your environment remains stable and consistent.
 
 ![Error Displaying Image!](./gfx/dependency_graph.png "Dependency Graph Example")
 
 
 ### 0.3: How do we use Python and Conda?
 
-Python and Conda are used all the time for post flight analysis. We use python and conda to automation tools. For example, we have developed a binary parser that would take flight log data in bytes and converted it into a .csv format using python. This allowed us to retrieve data such as rocket position, acceleration, time, etc. This data then would be used in jupyter notebooks to make graphs. We would plot things such as acceleration vs time in order to notice possible errors in the hardware, or even the program. These are a few exmaples as to how we use python an Conda but we are continously looking for ways to develop our flight analysis to improve future rocket designs and builds. 
+Python and Conda are used all the time for post-flight analysis. We use Python and conda to automate tools. For example, we have developed a binary parser that would take flight log data in bytes and convert it into a .csv format using Python. This allowed us to retrieve data such as rocket position, acceleration, time, etc. This data then would be used in jupyter notebooks to make graphs. We would plot things such as acceleration vs time to notice possible errors in the hardware or even the program. These are a few examples of how we use Python and Conda but we are continuously looking for ways to develop our flight analysis to improve future rocket designs and builds.
 
 ## Part 1: Installing Conda
-1. Install [Miniconda](https://docs.anaconda.com/miniconda/#quick-command-line-install). Miniconda is a lightweight version of Anaconda that includes Conda, Python, and a few essential packages. It's advantageous to install Miniconda instead of the full Anaconda because the installtion file is smaller. You can still add any of the packages provided by Anaconda to you enviornments using Conda as needed. Once conda is installed it will not be recognized by your systems terminal till it has been told to do so.
+1. Install [Miniconda](https://docs.anaconda.com/miniconda/#quick-command-line-install). Miniconda is a lightweight version of Anaconda that includes Conda, Python, and a few essential packages. It's advantageous to install Miniconda instead of the full Anaconda because the installation file is smaller. You can still add any of the packages provided by Anaconda to your environments using Conda as needed. When you go to type conda in your terminal you shell tries to find a shell function named conda or an executable file named conda in your PATH directories. Therefore if your conda has not been initalized properly it will fail to find a shell function named conda and return conda not found.
+
 ### Windows
-2. Open a powershell terminal as administrator and run the following line bellow.
+2. Open a Miniconda terminal by searching Anaconda Terminal and run the following line bellow. This line initializes conda on your Windows system. Conda must be initialized in order to provide a conda shell function that allows Python code to interact with the shell context more intimately. If you are more interested in the conda init function read [here](https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/activation.html)
     ```Shell
+    conda init
     ```
+   
 ### MacOS
 
 ### Linux
 
 ### Verify Conda Installation
-3. Once you have succesfully installed Conda, run the following terminal commands to verify your installation.
-    ```Shell
-    conda --version
-    ```
-    The output should look something like the following.
-    ![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
+3. Once you have successfully installed and initialized Conda, scroll up and open the test scripts folder. Now download the test script according to your OS. Once downloaded, open your terminal and cd to the location of the download. Then type the file name and run it. If your system says command not found. Refer to the code block below. If the command is not found it means that you do not have access to run the script. The following code ensures the script has execute permissions. This issue is likely to occur on Mac OS or Linux machines. If you account for this error, run the following below. This will give the script execute permission allowing you to run the program.
 
-    If the output states that conda is not recognized, run the test scripts located in this Git repository and execute the one corresponding to your system. If the output states that conda is not installed, double-check your conda installation. If it says that conda is installed but not initialized, refer to the instructions above to ensure you have initialized conda in your system terminal.
+```Shell
+chmod +x verify_conda_linux.sh
+```
+The script checks if conda is installed and if it has been initialized. If conda is both installed and initialized the terminal will output "Conda test OK." Otherwise, the script will tell you what is missing, and refer to the steps above if conda is not initialized or installed.
+   
+
+Another way to check if conda is set up correctly is to run the following below. This will call the conda shell function and output the version of conda your system currently has installed.
+ ```Shell
+conda --version
+```
+The output should look something like the following.
+![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
+
 
 4. Here are some useful conda commands.
     ```Shell
-    conda create --name Name_Of_Enviornment python = 3.10 # Create a new conda enviornment with python 3.10 (python version does not neet to be specified)
-    conda env list # List all the enviornments on your system
-    conda list # List all packages and versions installed in active enviornment
-    conda install PACKAGENAME # Intall a package in current enviornment
-    conda activate env_name # Activate an enviornment
-    conda deactivate # Switch to base enviornment
-    conda env remove --name env_name # Deleate an enviornment and everything in it
-    conda remove PACKAGENAME # Uninstall package in enviornment
+    conda create --name Name_Of_Environment Python = 3.10 # Create a new conda environment with Python 3.10 (Python version does not need to be specified)
+    conda env list # List all the environments on your system
+    conda list # List all packages and versions installed in the active environment
+    conda install PACKAGENAME # Install a package in the current environment
+    conda activate env_name # Activate an environment
+    conda deactivate # Switch to the base environment
+    conda env remove --name env_name # Deleate an environment and everything in it
+    conda remove PACKAGENAME # Uninstall package in environment
     ```
 ## Part 2: Simple Python Exercise
 
@@ -104,14 +115,23 @@ Need to add conda install for numpy
 First, we're going to get started with setting up your first Python project.
 Open your terminal and proceed with the steps below:
 
-
-Check your python version to make sure it's installed and up to date.
+Create a conda environment that will hold the packages need for this project. 
 ```Shell
-python --version
+conda create -n pfa_training 
 ```
-Run your first line of python code: Hello world!
+Once you have created an environment you must activate the environment in order to utilize the packages and dependicies installed in the environment.
 ```Shell
-python -c "print('hello world!')" #"-c" lets you pass a string (the text that comes next) as a python line to your terminal and run it.
+conda acttivate pfa_training
+```
+You have not succesfully entered the pfa_training environment!
+
+Check your Python version to make sure it's installed and up to date.
+```Shell
+Python --version
+```
+Run your first line of Python code: Hello world!
+```Shell
+Python -c "print('hello world!')" #"-c" lets you pass a string (the text that comes next) as a Python line to your terminal and run it.
 ```
 
 
@@ -137,7 +157,7 @@ cd .\py-exercises\     #cd  = change directory
 
 Create a new file called "ex1.py".
 ```Shell
-New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a python executable.
+New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a Python executable.
 ```
 
 
@@ -293,7 +313,7 @@ print(arr1@arr2)
 ```
 
 
-And that's the basics of python, using for loops and numpy.
+And that's the basics of Python, using for loops and numpy.
 
 
 
