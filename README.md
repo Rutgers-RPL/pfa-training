@@ -388,7 +388,7 @@ Then, re-open your terminal, and navigate back to your projects directory if you
 cd .\Projects\RRPL\ 
 ```
 
-Then, write the folling line to run your program, in either your computer's terminal or in VSCode terminal:
+Then, write the following line to run your program, in either your computer's terminal or in VSCode terminal:
 
 ```Shell
 python ex1.py
@@ -412,6 +412,13 @@ Note the difference in speed. What do you see? Which method was the fastest, and
 
 
 ## Part 3: Simple Jupyter Exercise
+
+Jupyter is like a programming "notebook" that helps us with post-flight analysis, and it's a powerful tool that we use at RPL.
+
+As mentioned before, interpreted languages are oftentimes better for quick testing since you don't need to compile the program every time they're run, 
+and simply running the file instead. Jupyter takes this a step further: instead of running the entire file every time, jupyter lets you run chunks of a 
+file by themselves, letting you do small-scale, quick, and most importantly, efficient computations and data analysis while you're writing code. 
+It's a huge asset for post-flight analysis, where minute changes to data representation are common.
 
 ```Shell
 jupyter notebook
