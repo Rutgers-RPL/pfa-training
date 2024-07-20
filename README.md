@@ -256,7 +256,7 @@ notepad.exe .\ex1.py
 ```
 
 
-If you do have vscode installed, open it with vscode.
+If you do have vscode installed, open it with vscode. (Hint: get VSCode.)
 ```Shell
 code .\ex1.py
 ```
@@ -420,6 +420,66 @@ and simply running the file instead. Jupyter takes this a step further: instead 
 file by themselves, letting you do small-scale, quick, and most importantly, efficient computations and data analysis while you're writing code. 
 It's a huge asset for post-flight analysis, where minute changes to data representation are common.
 
+Start by opening up your terminal. Try doing the following steps without opening your file explorer!
+
+1. Enter your RRPL/projects folder.
+
+2. Create a new file with the ending .ipynb; this is the file extension for jupyter notebooks.
+
+3. Open the new file in VSCode.
+
+3a. Or, if you prefer, you can create and launch the jupyter notebook using your terminal:
+
 ```Shell
 jupyter notebook
 ```
+
+At this point, the file should be open, and there should be a dark box in the center of your screen:
+![Error Displaying Image!](./gfx/jupyer.png "empty notebook")
+
+This "dark box" is called a "cell." Code that we write in these cells can be executed on their own, kind of like putting breakpoints in regular code,
+but even more efficient and intuitive.
+
+1. In that cell, import your numpy library with the alias "np", and import the library "matplotlib.pyplot" as plt. 
+If you don't have the latter library, download it just as you did with numpy.
+
+2. Create a new cell. VSCode makes this easy for you; find the "+Code" button in the top left of your interface. 
+ If you're in the online jupyter interface, it'll be the "plus" button in the top-left corner.
+
+![Error Displaying Image!](./gfx/pluscode.png "pluscode")
+
+3. Matplotlib is a plotting library that lets you create graphs based on data input super intuitively. Before you can use matplotlib, though, there is 
+an extra line of code you need to write before Jupyter will print plots below the cell you're working in, or "in-line". Using the matplotlib documentation, 
+find out what this line is. (HINT: it starts with a "%"! https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show)
+
+4. Make another cell. In this cell, generate an array of numbers from 0 to 100, with 500 evenly spaced samples between them. You can do this easily with
+numpy's "linspace" function. For example:
+
+```Python
+array = np.linspace(start, end, numSamples)
+```
+
+5. Now that you understand how to make an array with linspace, we're going to take it a step further. Make a new cell.
+
+5. a. First, in this new cell, make another array with linspace, and use a for-loop instead of three arguments. In this array, store the number 5 five hundred times. 
+A for-loop within a linspace routine call might look something like this; remember to modify as needed:
+
+```Python
+array = np.linspace([for i in range (200)]) #this syntax will need to change slightly; pay attention to the "for i".
+```
+5. b. Now, plot the new array you just made against the first array you made using matplotlibs. The command might look something like this:
+
+```Python
+arrayGrapher.plot(arrayX, arrayY)
+```
+Array X will be your X axis, and ArrayY will be your Y axis. Keep in mind, arrayGrapher should be your alias that you imported matplotlibs with.
+
+5. c. Go ahead and title your plot using matplotlibs:
+
+```Python
+arrayGrapher.title('Pick a name!')
+```
+6. Now that you've made it this far, run all of your cells, one by one, in descending order. Notice how changes slowly take effect. Once you're done,
+change the name of the plot, and re-run the final cell. Notice how you don't need to re-run the entire program to make changes; this is the importance of jupyter!
+
+-Need to finish other plots -Tyler & Mahir
