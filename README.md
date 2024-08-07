@@ -6,18 +6,14 @@ Post-flight analysis is a key part of the iterative engineering process. Looking
 
 ### 0.1: What is Python?
 
-Python is one of the most widely-used programming languages in the computer engineering and computer science industry, and for good reason; it has a very simple syntax that beginners can read and understand, is very easy to develop and test code with, and has built-in support for many powerful packages that assist the development process greatly. It’s especially useful for post-flight data analysis, in which case Python is able to provide powerful data visualization tools (like graphs and charts), as well as interactive interfaces and automation services to make interacting and analyzing our data even easier. By taking advantage of these features of Python, post-flight data analysis can be made far simpler and efficient.
+Python is one of the most widely-used programming languages in the computer engineering and computer science industry, and for good reason; it has a very simple syntax that beginners can read and understand, is very easy to develop and test code with, and has built-in support for many powerful packages that assist the development process greatly. It’s especially useful for post-flight data analysis, in which case Python is able to provide powerful data visualization tools (like graphs and charts), as well as interactive interfaces and automation services to make interacting and analyzing our data even easier. By taking advantage of these features of Python, post-flight data analysis can be made far simpler and more efficient.
 
 ![Error Displaying Image!](./gfx/pythonlogo.png "Python logo")
 
 #### Compiled vs. Interpreted Languages
 
 
-Python is an interpreted programming language, just like Javascript and R. “Interpreted” means that when you run your code, your program is evaluated and executed line by line, every single time you run the program. This isn’t always the case; certain programming languages, like C, C++, and Rust, are called compiled languages. Compiled languages are translated (or compiled) into a more computer-friendly format the first time they’re run, and this new version is used every time the program is run.
-
-
-A compiled language, over time, will be faster than an interpreted one; after all, it’s easier and faster for a computer to understand its own language than to have everything translated line-by-line. Additionally, more errors will be caught at compile time as opposed to runtime, meaning some mistakes are caught earlier. However, if you make a lot of changes to the code, and the language needs to constantly re-translate (or re-compile) the entire program every time a change is made, this can become a huge time-waster for a programmer. This makes an interpreted language like Python perfect for testing and development.
-
+Python is an interpreted programming language, just like Javascript, R, and MATLAB. “Interpreted” means that when you run your code, your program is evaluated and executed line by line, every single time you run the program. This isn’t always the case; certain programming languages, like C, C++, and Rust, are called compiled languages. Compiled languages are translated (or compiled) into a more computer-friendly format the first time they’re run, and this new version is used every time the program is run.
 
 This is how a compiled language behaves, in general:
 
@@ -26,6 +22,10 @@ This is how a compiled language behaves, in general:
 And similarly, this is how an interpreted language behaves.
 
 ![Error Displaying Image!](./gfx/interpreter.png "Interpreter diagram")
+
+Interpreted languages like Python are a little bit easier to do post-flight analysis with, since they don't need to be compiled (re-translated) every time they're run. 
+Python specifically is very easy to write with, because a lot of complicated processes are handled in the background and its syntax is generally simple to understand. Additionally,
+Python is known for having a large existing collection of popular and effective numerical and scientific tools that you can use right away, in the form of packages and modules.
 
 
 #### Packages and Modules
@@ -38,10 +38,13 @@ Using packages, you can incorporate Python code written by others into your own 
 
 
 
-PIP is one of the most common tools for package management in Python. With one-line terminal commands, packages can be downloaded to your machine, meaning the only thing you need to do is import the code into your file. However, some projects may require certain packages while others require different packages; in this case, installing all the packages for every project you’ll work on is messy and a waste of resources. A simple solution is venv, a “virtual environment” creator for Python, which essentially allows you to create a separate space for different projects and sets of packages. This means multiple package and module installations won’t clutter up and pollute your build environment, whatever it may be for that project.
+Pip is one of the most common tools for package management that comes built-in with Python. With one-line terminal commands, packages can be downloaded to your machine, meaning the only thing you need to do is import the code into your file. However, some projects may require certain packages while others require different packages; in this case, installing all the packages for every project you’ll work on is messy and a waste of resources. 
 
+A simple solution is venv, a “virtual environment” creator for Python that you install separately, which essentially allows you to create a separate space for different projects and sets of packages. This means multiple package and module installations won’t clutter up and pollute your build environment, whatever it may be for that project. Think of it like a real-life library; instead of looking for a book in every shelf in every room, you can sort a library by genre or author. Venv does the same thing; virtual environments are like bookshelves for your packages, so you and your programming environment have less to sort through. 
 
-Pip, however, has no built-in support for packages and modules written outside of the standard Python libraries, and also has no built-in isolated build environment support; it relies on outside tools like Venv to achieve this. This means that although using PIP will work for some time, it is good to pursue other package management tools that have more dynamic packages and build environment support, such as Conda.
+By using venv and pip together, you can accomplish most of your scientific computing tasks. Pip and venv are great tools for managing python packages and basic environments. However,
+newer tools exist for package management that are better integrated with virtual environment managers, which also have more options for scientific tools to work with. This means a
+bigger, better library for you to work with. One of the best options for our work is Conda.
 
 
 ### 0.2: What is Conda?
@@ -109,16 +112,21 @@ The output should look something like the following.
 ## Part 2a: Python exercise setup
 
 
-First, we're going to get started with setting up your first Python project.
+First, we're going to get started with setting up your first Python project: a matrix multiplication program!
 Open your terminal and proceed with the steps below:
 
 
-Check your python version to make sure it's installed and up to date. If not, navigate to https://www.python.org/downloads/ and download it.
+Check your python version to make sure it's installed and up to date. 
 ```Shell
 python --version
 ```
 
-Install the numpy package using the conda command suite above. 
+Numpy is a popular python package that makes it a lot easier to work with arrays and matrices, including the complicated math that comes with them.
+We can install it on our machine by using the conda commands from above:
+
+```Shell
+conda install numpy
+```
 
 
 Open your terminal, and run your first line of python code: Hello world!
@@ -146,18 +154,27 @@ cd .\py-exercises\     #cd  = change directory
 
 
 
-
 Create a new file called "ex1.py".
 ```Shell
 New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a python executable.
 ```
 
+If you're on a unix system (Linux, or MacOS which is based on Linux):
+
+```Shell
+nano ex1.py
+#follow with ctrl+o (save), and ctrl+x (exit).
+```
 
 If you don't have VSCode installed, go ahead and open the file in your notepad.
 
 
 ```Shell
 notepad.exe .\ex1.py
+
+#if on unix, run:
+
+nano ex1.py
 ```
 
 
@@ -219,6 +236,10 @@ and the current column index of l2 (the index of the second layer) in the corres
 If you're having trouble visualizing this, take a look at the matrix multiplication graph below, and review how to write a for-loop in Python.
 Remember, code is supposed to make computations easier, not harder!
 
+Also take a look at this link that explains how matrix multiplication works in a little more detail. 
+
+https://www.mathsisfun.com/algebra/matrix-multiplying.html
+
 ![Error Displaying Image!](./gfx/matrixmult.png "Matrix Multiplication")
 
 
@@ -241,7 +262,7 @@ print by row.
 That for loop was probably a little confusing to make sense of at first, and probably
 still is. Fortunately, python provides some faster methods of matrix math, including multiplication.
 
-Let's try this in a more efficient way using List Comprehensions. LIst Comprehensions are a much cleaner
+Let's try this in a more efficient way using List Comprehensions. List Comprehensions are a much cleaner
 way of having Python handle arrays with a new handling format. They basically look like this:
 
 ![Error Displaying Image!](./gfx/comprehensions.png "comprehensions")
@@ -254,13 +275,17 @@ And you can store this result in a variable.
 
 3. You don't need to worry about a "condition"; this would be an if-statement that applied to all three loops, and we don't have that right now.
 
+```Python
+#I think we should drop this segment. This is something I personally wouldn't use if this was my intro to python 
+```
+
 
 ```Python
 result = #write your comprehension here!
 ```
 
 
-4. And print out the result, which should be the same process you used to print it out before. If you printed one way before, try something new!
+4. And print out the result, which should be the same process you used to print it out before. Can you think of another way to print it out?
 
 
 The last, and most effiecient (and easiest to type) method is using our NumPy package that we imported before.
@@ -354,8 +379,11 @@ If you don't have the latter library, download it just as you did with numpy.
 ![Error Displaying Image!](./gfx/pluscode.png "pluscode")
 
 3. Matplotlib is a plotting library that lets you create graphs based on data input super intuitively. Before you can use matplotlib, though, there is 
-an extra line of code you need to write before Jupyter will print plots below the cell you're working in, or "in-line". Using the matplotlib documentation, 
-find out what this line is. (HINT: it starts with a "%"! https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show)
+an extra line of code you need to write before Jupyter will print plots below the cell you're working in, or "in-line".
+
+```Python
+%matplotlib inline
+```
 
 4. Make another cell. In this cell, generate an array of numbers from 0 to 100, with 500 evenly spaced samples between them. You can do this easily with
 numpy's "linspace" function. For example:
@@ -387,4 +415,8 @@ arrayGrapher.title('Pick a name!')
 6. Now that you've made it this far, run all of your cells, one by one, in descending order. Notice how changes slowly take effect. Once you're done,
 change the name of the plot, and re-run the final cell. Notice how you don't need to re-run the entire program to make changes; this is the importance of jupyter!
 
--Need to finish other plots -Tyler & Mahir
+Your plot should look something like this:
+
+![Error Displaying Image!](./gfx/jupyter1.png "first plot")
+
+7. 
