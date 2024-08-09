@@ -49,47 +49,72 @@ bigger, better library for you to work with. One of the best options for our wor
 
 ### 0.2: What is Conda?
 
-Conda is an open-source package management and environment management system. This tool installs, runs, and updates software packages and dependencies. Conda and pip can be used to install packages and dependencies but conda is preferred because it allows the users to create virtual environments for different projects while being more efficient and easy to use.
+Conda is a package management system similar to pip, but it offers additional features, including an environment management system. Unlike pip, Conda must be installed externally. With conda, users can install, run, and update software packages and dependencies just like with pip. However, the major difference is that Conda includes an environment manager, making it easier and more efficient for users to create virtual environments for different projects. The environment management feature enhances the flexibility and usability of conda, allowing users to isolate project dependencies and manage multiple projects more effectively. 
+
 
 #### Managing Multiple Environments
 
-As stated above conda allows the user to create different virtual environments. A virtual environment is an isolated space where you can install and manage a specific set of packages and dependencies without affecting other projects on your system. Each environment has its directory, separate from the system's global environment, containing all the necessary files and libraries required for a particular project. This isolation helps prevent conflicts between different projects, allowing you to use different versions of packages and Python for each project. Environments are especially useful for managing dependencies and ensuring that your projects are reproducible and consistent across different systems. Conda allows you to switch between these different environments and install different versions of Python or packages in different environments efficiently and easily.
+As stated above Conda allows the user to create different virtual environments. A virtual environment is an isolated space where you can install and manage a specific set of packages and dependencies without affecting other projects on your system. Each environment has its directory, separate from the system's global environment, containing all the necessary files and libraries required for a particular project. This isolation helps prevent conflicts between different projects, allowing you to use different versions of packages and Python for each project. Environments are especially useful for managing dependencies and ensuring that your projects are reproducible and consistent across different systems. Conda allows you to switch between these different environments and install different versions of Python or packages in different environments efficiently and easily.
 
 
 #### Controling Dependencies and Conflicts
 
-It is important to have the ability to control the version of dependencies installed for your project because of how different packages when used together rely on others. A good visualization for this is called a dependency graph which can be seen below. A dependency graph is a visual representation of the relationships between software packages and their dependencies. In this graph, each node represents a package, and each edge represents a dependency relationship. For example, if Package A depends on Package B, there will be a directed edge from A to B. This graph helps in understanding how packages are interconnected and which packages rely on others. Sometimes, different packages require different versions of the same dependency. For instance, Package A might need version 1.2 of a library, while Package B requires version 2.0. This can lead to dependency clashes, where it becomes impossible to satisfy all requirements simultaneously. Additionally, packages or their versions can become deprecated over time, meaning they are no longer maintained or recommended for use. This is where conda excels. Conda addresses these issues with a dependency resolver that analyzes the dependency graph and finds valid "transactions" to install, change, or remove packages. The solver ensures that all dependencies are met and compatible versions are used. When you issue a command to install or update a package, Conda's solver determines the best set of actions to maintain a functional and conflict-free environment. This process helps in avoiding dependency clashes and ensures that your environment remains stable and consistent.
+It's important to control the versions of dependencies for your project because different packages often rely on others, which can lead to compatibility issues. A good way to understand these relationships is through a dependency graph, where each node represents a package, and each edge represents a dependency. For example, if Package A depends on Package B, there will be a line from A to B.
+
+Different packages need different versions of the same dependency, leading to conflicts. For instance, Package A might require version 1.2 of a library, while Package B needs version 2.0. Additionally, some packages or versions may become outdated and no longer maintained.
+
+Conda helps manage these issues with a dependency resolver. This resolver analyzes the dependency graph and determines the best way to install, update, or remove packages without causing conflicts. Where you run a command to install or update a package, Conda ensures all dependencies are met and compatible versions are used, keeping your environment stable and consistent. If you would like to understand how the Conda solver works on a deeper level you can do some further reading [here](https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/solvers.html)
+
 
 ![Error Displaying Image!](./gfx/dependency_graph.png "Dependency Graph Example")
 
 
 ### 0.3: How do we use Python and Conda?
 
-Python and Conda are used all the time for post-flight analysis. We use Python and conda to automate tools. For example, we have developed a binary parser that would take flight log data in bytes and convert it into a .csv format using Python. This allowed us to retrieve data such as rocket position, acceleration, time, etc. This data then would be used in jupyter notebooks to make graphs. We would plot things such as acceleration vs time to notice possible errors in the hardware or even the program. These are a few examples of how we use Python and Conda but we are continuously looking for ways to develop our flight analysis to improve future rocket designs and builds.
+Python and Conda are used all the time for post-flight analysis. We use Python and Conda to automate tools. For example, we have developed a binary parser that would take flight log data in bytes and convert it into a .csv format using Python. This allowed us to retrieve data such as rocket position, acceleration, time, etc. This data then would be used in jupyter notebooks to make graphs. We would plot things such as acceleration vs time to notice possible errors in the hardware or even the program. These are a few examples of how we use Python and Conda but we are continuously looking for ways to develop our flight analysis to improve future rocket designs and builds.
 
 ## Part 1: Installing Conda
-1. Install [Miniconda](https://docs.anaconda.com/miniconda/#quick-command-line-install). Miniconda is a lightweight version of Anaconda that includes Conda, Python, and a few essential packages. It's advantageous to install Miniconda instead of the full Anaconda because the installation file is smaller. You can still add any of the packages provided by Anaconda to your environments using Conda as needed. When you go to type conda in your terminal you shell tries to find a shell function named conda or an executable file named conda in your PATH directories. Therefore if your conda has not been initalized properly it will fail to find a shell function named conda and return conda not found.
+1. Install [Miniconda](https://docs.anaconda.com/miniconda/#quick-command-line-install). Miniconda contains the useful parts of Anaconda that includes Conda, Python, and a few essential packages. It's advantageous to install Miniconda instead of the full Anaconda because the installation file is smaller while still providing full functionality. You can still add any of the packages provided by Anaconda to your environments using Conda as needed. 
+
+When you go to type Conda in your terminal you shell tries to find a shell function named Conda or an executable file named Conda in your PATH directories. Therefore if your Conda has not been initalized properly it will fail to find a shell function named Conda and return Conda not found.
 
 ### Windows
-2. Open a Miniconda terminal by searching Anaconda Terminal and run the following line bellow. This line initializes conda on your Windows system. Conda must be initialized in order to provide a conda shell function that allows Python code to interact with the shell context more intimately. If you are more interested in the conda init function read [here](https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/activation.html)
+2. Open a Miniconda terminal by searching for "Anaconda Terminal" on your Windows system. Once the terminal is open, run the following command to initialize Conda:
     ```Shell
     conda init
     ```
+    This step is essential because it sets up Conda in your shell environment, enabling the shell to recognize Conda commands. When you run a Conda command, your shell searches for a function or executable named 'conda' in your PATH directories. If Conda hasn't been properly initialized, your shell won't find the command, leading to a 'conda not found' error.
+    If you are more interested in the Conda init function you can do further reading [here](https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/activation.html)
    
 ### MacOS
-
+2. Open your terminal and run the following command to initialize Conda:
+    ```Shell
+    conda init
+    ```
+    Conda init on MacOS works very similar to that of Windows. This function modifies the '.zshrc' (MacOS shell configuration file) and sets up the necessary environment variables and PATH settings so that the Conda command is recognized when you open a terminal. Refer to the Windows initialization if you want to do more reading on the Conda init function.
 ### Linux
 
 ### Verify Conda Installation
-3. Once you have successfully installed and initialized Conda, scroll up and open the test scripts folder. Now download the test script according to your OS. Once downloaded, open your terminal and cd to the location of the download. Then type the file name and run it. If your system says command not found. Refer to the code block below. If the command is not found it means that you do not have access to run the script. The following code ensures the script has execute permissions. This issue is likely to occur on Mac OS or Linux machines. If you account for this error, run the following below. This will give the script execute permission allowing you to run the program.
+3. After installing and initialiing Conda, locate the test scripts folder above and download the appropriate script for your operating system. Then for Windows open up the powershell and for linux/MacOS open up the terminal. Once in your terminal navigate to the directory where the script was downloaded using the 'cd' command. Once there, type the script's name to run it.
+```Shell
+.\verify_conda_windows.ps1 #Windows
+./verify_conda_macos.zsh #MacOS
+./verify_conda_linux.sh #Linux
+```
+If you encounter a permisson denied error, it likely means that the script doesn't have the necessary execute permisssions. This error will only occur on MacOS/Linux systems as Windows does not have file executable permissions. To resolve this, you can grant execute permissions by using the following command:
+```Shell
+chmod +x verify_conda_linux.sh #Linux
+chmod +x verify_conda_macos.zsh #MacOS
+```
+This grants the script execute permission allowing you to run the program. If you would like to learn more about Linux/MacOS file permissions you can do more reading [here](https://www.redhat.com/sysadmin/linux-file-permissions-explained)
 
 ```Shell
 chmod +x verify_conda_linux.sh
 ```
-The script checks if conda is installed and if it has been initialized. If conda is both installed and initialized the terminal will output "Conda test OK." Otherwise, the script will tell you what is missing, and refer to the steps above if conda is not initialized or installed.
+The script checks if Conda is installed and if it has been initialized. If Conda is both installed and initialized the terminal will output "Conda test OK." Otherwise, the script will tell you what is missing, and refer to the steps above if Conda is not initialized or installed.
    
 
-Another way to check if conda is set up correctly is to run the following below. This will call the conda shell function and output the version of conda your system currently has installed.
+Another way to check if Conda is set up correctly is to run the following below. This will call the Conda shell function and output the version of Conda your system currently has installed.
  ```Shell
 conda --version
 ```
@@ -97,9 +122,9 @@ The output should look something like the following.
 ![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
 
 
-4. Here are some useful conda commands.
+4. Here are some useful Conda commands.
     ```Shell
-    conda create --name Name_Of_Environment Python = 3.10 # Create a new conda environment with Python 3.10 (Python version does not need to be specified)
+    conda create --name Name_Of_Environment Python = 3.xx # Create a new Conda environment with Python 3.xx (Python subversion does not need to be specified)
     conda env list # List all the environments on your system
     conda list # List all packages and versions installed in the active environment
     conda install PACKAGENAME # Install a package in the current environment
@@ -115,14 +140,22 @@ The output should look something like the following.
 First, we're going to get started with setting up your first Python project: a matrix multiplication program!
 Open your terminal and proceed with the steps below:
 
+First, we will set up a virtual environment that contains Python and the relevant packages before writing any code. Remember it is good practice to create a new environment for each project.
+```Shell
+conda create --name pfa_Training
+```
+Once our Conda environment has been created we must activate it allowing us to manage our environment and utilize any installed packages. A nice feature built into Conda is it will specify the current environment in parenthesis on the left hand side of your terminal.
+```Shell
+conda activate pfa_Training
+```
 
-Check your python version to make sure it's installed and up to date. 
+Now check your python version to make sure it's installed and up to date. 
 ```Shell
 python --version
 ```
 
 Numpy is a popular python package that makes it a lot easier to work with arrays and matrices, including the complicated math that comes with them.
-We can install it on our machine by using the conda commands from above:
+We can install it on our machine by using the Conda commands from above:
 
 ```Shell
 conda install numpy
@@ -134,24 +167,20 @@ Open your terminal, and run your first line of python code: Hello world!
 python -c "print('hello world!')" #"-c" lets you pass a string (the text that comes next) as a python line to your terminal and run it.
 ```
 
-
 Enter your RRPL directory within your Projects directory.
 ```Shell
 cd .\Projects\RRPL\  #"." is a symbol for the parent folder you're currently in.
 ```
-
 
 Make a new folder called py_exercises.
 ```Shell
 mkdir py-exercises # mkdir = make directory
 ```
 
-
 Enter the new folder you just made.
 ```Shell
 cd .\py-exercises\     #cd  = change directory
 ```
-
 
 
 Create a new file called "ex1.py".
@@ -350,7 +379,12 @@ and simply running the file instead. Jupyter takes this a step further: instead 
 file by themselves, letting you do small-scale, quick, and most importantly, efficient computations and data analysis while you're writing code. 
 It's a huge asset for post-flight analysis, where minute changes to data representation are common.
 
-Start by opening up your terminal. Try doing the following steps without opening your file explorer!
+Start by opening up your terminal and installing jupyter. Ensure you are still in the pfa_Training conda environment.
+```Shell
+conda install jupyter
+```
+
+Now try doing the following steps without opening your file explorer!
 
 1. Enter your RRPL/projects folder.
 
@@ -363,6 +397,7 @@ Start by opening up your terminal. Try doing the following steps without opening
 ```Shell
 jupyter notebook
 ```
+One key thing to remember is jupyter will use the environment in when launched. For example if you launch jupyter notebook in the base environment and try to run a numpy command it will not be found as it is not installed in the base environment.
 
 At this point, the file should be open, and there should be a dark box in the center of your screen:
 ![Error Displaying Image!](./gfx/jupyer.png "empty notebook")
@@ -371,7 +406,7 @@ This "dark box" is called a "cell." Code that we write in these cells can be exe
 but even more efficient and intuitive.
 
 1. In that cell, import your numpy library with the alias "np", and import the library "matplotlib.pyplot" as plt. 
-If you don't have the latter library, download it just as you did with numpy.
+If you don't have the latter library, download it just as you did with numpy (conda install matplotlib).
 
 2. Create a new cell. VSCode makes this easy for you; find the "+Code" button in the top left of your interface. 
  If you're in the online jupyter interface, it'll be the "plus" button in the top-left corner.
@@ -419,4 +454,67 @@ Your plot should look something like this:
 
 ![Error Displaying Image!](./gfx/jupyter1.png "first plot")
 
-7. 
+7. Another great feature of Matplotlib is its ability to overlay multiple plots on top of each other. This is particularly useful when you want to compare different datasets that share the same axes, as it allows you to see how the data interacts or differs in a single view.
+
+In this example, we'll demonstrate this by first using np.random.rand to generate a set of uniform random points. Then, we'll use np.random.normal to generate a set of points with Gaussian noise. For our Guassian noise, we will specify two parameters one being 'scale' which specifies the standard deviation of the normal distribution and the second 'size' which determines the number of random values to generate. By overlaying these two plots, you can easily compare the distribution of uniform random data against the Gaussian noise, all within the same graph. 
+```Python
+plt.plot(x, np.random.rand(500)*2-1) # Uniform Noise
+plt.plot(x, np.random.normal(scale=0.5,size=500)) # Gaussian Noise
+plt.title('Plot 2: Uniform vs. Gaussian Noise')
+```
+
+Your plot should look something like this:
+
+![Error Displaying Image!](./gfx/jupyter2.png "second plot")
+
+8. Now let's try plotting a function. 
+```Python
+y2 = -1*pow((x-50)/10, 2)+25 # What does this look like as a formula?
+plt.plot(x, y2)
+plt.title('Plot 3: Parabolic Trajectory')
+```
+
+Your plot should look something like this: 
+
+![Error Displaying Image!](./gfx/jupyter3.png "third plot")
+
+9. Another cool feature is you can manipulate a function once it has been defined already. For example in the code snippet below we will translate the parabola up and down defined in the variable y3.
+```Python
+y3 = -1*pow((x-50)/10, 2)+25
+plt.plot(x, y3)
+plt.plot(x, y3+1)
+plt.plot(x, y3-1)
+plt.title('Plot 4: Vertical Translations')
+```
+
+Your plot should look something like this:
+
+![Error Displaying Image!](./gfx/jupyter4.png "fourth plot")
+
+10. Function manipulation is not only limited to integer addition and subtraction. Let's try adding some Gaussian and uniform noise to our parabolas.
+```Python
+y4 = pow((x-50)/10, 2)
+plt.plot(x, y4)
+plt.plot(x, y4+3+np.random.normal(scale=0.75,size=500)) # Translate and add gaussian noise
+plt.plot(x, y4-4+3*np.random.rand(500)) # Translate and add uniform noise
+plt.title('Plot 5')
+```
+
+Your plot should look something like this:
+
+![Error Displaying Image!](./gfx/jupyter5.png "fifth plot")
+
+11. Lastly, you can utilize in-built functions in numpy such as sin for your plots. For the last plot will we create a noisy sin function.
+```Python
+y3 = np.sin(x/np.pi) + x/20
+y3 += np.random.normal(scale=0.5,size=500)
+
+plt.plot(x, y3)
+plt.title('Plot 6: Noisy Composite Function')
+```
+
+Your plot should look like this:
+
+![Error Displaying Image!](./gfx/jupyter5.png "sixth plot")
+
+That's it! Congratulations and welcome to PFA!
