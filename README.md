@@ -77,11 +77,20 @@ Python and Conda are used all the time for post-flight analysis. We use Python a
     ```
    
 ### MacOS
-
+3. 
 ### Linux
 
+4. Open your Linux terminal, and run the following commands. You can copy with ctrl+c, but make sure you paste with ctrl+shift+V.
+
+```Shell
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+```
+
 ### Verify Conda Installation
-3. Once you have successfully installed and initialized Conda, scroll up and open the test scripts folder. Now download the test script according to your OS. Once downloaded, open your terminal and cd to the location of the download. Then type the file name and run it. If your system says command not found. Refer to the code block below. If the command is not found it means that you do not have access to run the script. The following code ensures the script has execute permissions. This issue is likely to occur on Mac OS or Linux machines. If you account for this error, run the following below. This will give the script execute permission allowing you to run the program.
+5. Once you have successfully installed and initialized Conda, scroll up and open the test scripts folder. Now download the test script according to your OS. Once downloaded, open your terminal and cd to the location of the download. Then type the file name and run it. If your system says command not found. Refer to the code block below. If the command is not found it means that you do not have access to run the script. The following code ensures the script has execute permissions. This issue is likely to occur on Mac OS or Linux machines. If you account for this error, run the following below. This will give the script execute permission allowing you to run the program.
 
 ```Shell
 chmod +x verify_conda_linux.sh
@@ -97,7 +106,7 @@ The output should look something like the following.
 ![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
 
 
-4. Here are some useful conda commands.
+6. Here are some useful conda commands.
     ```Shell
     conda create --name Name_Of_Environment Python = 3.10 # Create a new conda environment with Python 3.10 (Python version does not need to be specified)
     conda env list # List all the environments on your system
@@ -154,7 +163,7 @@ cd .\py-exercises\     #cd  = change directory
 
 
 
-Create a new file called "ex1.py".
+Create a new file called "ex1.py" like this if you're on Windows:
 ```Shell
 New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a python executable.
 ```
@@ -187,6 +196,8 @@ code .\ex1.py
 
 Let's get started with writing your first lines of Python code!
 
+You're going to write two short functions to multiply two matrices together and print out the result to your terminal.
+
 
 1. First, go ahead and import the numpy package, with the alias np.
 
@@ -203,11 +214,15 @@ example = [[1, 2, 3],
         [8, 40, 2],
         [1, 9, 7]]
      
-#This is an example of what a python matrix might look like.
+#This is an example of what a python matrix might look like. 
+
+#A matrix is really just an array of arrays; that's exactly what 
+#we're doing here. It's an array of three elements, where each element
+# is an array of three elements itself!
 ```
 
 
-3. We are going to multiply these matrices and store it in a third.
+3. We are going to store the product in a third matrix.
 In order to do this, create a third 3x3 matrix, and fill it with zeroes.
 
 In order to multiply these matrices, it helps to know the number of rows
@@ -228,10 +243,13 @@ numCols = len(matrix[0]) #gets the number of columns, since we indexed to specif
 
 The outermost layer should iterate 
 through the number of rows in l1, the next layer should iterate through the number of columns in l2, 
-and the final layer should iterate through the number of columns in l1. 
+and the final layer should iterate through the number of columns in l1, which should be the same as the number of columns in l2.
 
 Within the innermost layer, store the multiplied result of the current row index of l1 (the index of the outermost layer)
 and the current column index of l2 (the index of the second layer) in the corresponding row and column index of the third layer.
+
+Essentially, what we're doing is a dot product; For each combination of row i from l1 and column j from l2, the innermost loop 
+calculates the product of the corresponding elements and adds it to the current position [i][j] in the result matrix.
 
 If you're having trouble visualizing this, take a look at the matrix multiplication graph below, and review how to write a for-loop in Python.
 Remember, code is supposed to make computations easier, not harder!
@@ -242,10 +260,9 @@ https://www.mathsisfun.com/algebra/matrix-multiplying.html
 
 ![Error Displaying Image!](./gfx/matrixmult.png "Matrix Multiplication")
 
-
 ```Python
 for i in range(10):
-    #This is what a for-loop looks like. Write an action here to be repeated 10 times.
+    #This is what a for-loop looks like, for reference. You can write an action here to be repeated 10 times.
 
 ```
 
@@ -259,36 +276,7 @@ print by row.
     #element by element. Get creative!
 ```
 
-That for loop was probably a little confusing to make sense of at first, and probably
-still is. Fortunately, python provides some faster methods of matrix math, including multiplication.
-
-Let's try this in a more efficient way using List Comprehensions. List Comprehensions are a much cleaner
-way of having Python handle arrays with a new handling format. They basically look like this:
-
-![Error Displaying Image!](./gfx/comprehensions.png "comprehensions")
-
-And you can store this result in a variable.
-
-1. The "output" should be the actual multiplication of your matrix (hint: the innermost executable line from your for-loop!)
-
-2. The "collection" should be the for-loops you used before, just written horizontally without returns and indexes. Keep brackets and parentheses in mind, though!
-
-3. You don't need to worry about a "condition"; this would be an if-statement that applied to all three loops, and we don't have that right now.
-
-```Python
-#I think we should drop this segment. This is something I personally wouldn't use if this was my intro to python 
-```
-
-
-```Python
-result = #write your comprehension here!
-```
-
-
-4. And print out the result, which should be the same process you used to print it out before. Can you think of another way to print it out?
-
-
-The last, and most effiecient (and easiest to type) method is using our NumPy package that we imported before.
+The other, and most effiecient (and easiest to type) method is using our NumPy package that we imported before.
 
 
 1. First, store both arrays as numpy array variables. Here's an example:
@@ -390,7 +378,12 @@ numpy's "linspace" function. For example:
 
 ```Python
 array = np.linspace(start, end, numSamples)
+#"Start" is the start value of the array, "End" is the end value, and "numSamples" is the literal number of elements you want in the array.
 ```
+
+Or, you can reference Numpy's documentation for a better explanation. https://numpy.org/doc/stable/reference/generated/numpy.linspace.html 
+(You'll be using documentation a lot in pfa!)
+
 
 5. Now that you understand how to make an array with linspace, we're going to take it a step further. Make a new cell.
 
@@ -398,19 +391,19 @@ array = np.linspace(start, end, numSamples)
 A for-loop within a linspace routine call might look something like this; remember to modify as needed:
 
 ```Python
-array = np.linspace([for i in range (200)]) #this syntax will need to change slightly; pay attention to the "for i".
+array = np.linspace([for i in range (200)]) #-TFA : need to fix
 ```
 5. b. Now, plot the new array you just made against the first array you made using matplotlibs. The command might look something like this:
 
 ```Python
-arrayGrapher.plot(arrayX, arrayY)
+plt.plot(arrayX, arrayY)
 ```
-Array X will be your X axis, and ArrayY will be your Y axis. Keep in mind, arrayGrapher should be your alias that you imported matplotlibs with.
+Array X will be your X axis, and ArrayY will be your Y axis. 
 
 5. c. Go ahead and title your plot using matplotlibs:
 
 ```Python
-arrayGrapher.title('Pick a name!')
+plt.title('Pick a name!')
 ```
 6. Now that you've made it this far, run all of your cells, one by one, in descending order. Notice how changes slowly take effect. Once you're done,
 change the name of the plot, and re-run the final cell. Notice how you don't need to re-run the entire program to make changes; this is the importance of jupyter!
