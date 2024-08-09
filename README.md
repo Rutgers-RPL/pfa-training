@@ -36,8 +36,6 @@ Using packages, you can incorporate Python code written by others into your own 
 
 #### Installing Packages (pip)
 
-
-
 Pip is one of the most common tools for package management that comes built-in with Python. With one-line terminal commands, packages can be downloaded to your machine, meaning the only thing you need to do is import the code into your file. However, some projects may require certain packages while others require different packages; in this case, installing all the packages for every project you’ll work on is messy and a waste of resources. 
 
 A simple solution is venv, a “virtual environment” creator for Python that you install separately, which essentially allows you to create a separate space for different projects and sets of packages. This means multiple package and module installations won’t clutter up and pollute your build environment, whatever it may be for that project. Think of it like a real-life library; instead of looking for a book in every shelf in every room, you can sort a library by genre or author. Venv does the same thing; virtual environments are like bookshelves for your packages, so you and your programming environment have less to sort through. 
@@ -49,7 +47,7 @@ bigger, better library for you to work with. One of the best options for our wor
 
 ### 0.2: What is Conda?
 
-Conda is a package management system similar to pip, but it offers additional features, including an environment management system. Unlike pip, Conda must be installed externally. With conda, users can install, run, and update software packages and dependencies just like with pip. However, the major difference is that Conda includes an environment manager, making it easier and more efficient for users to create virtual environments for different projects. The environment management feature enhances the flexibility and usability of conda, allowing users to isolate project dependencies and manage multiple projects more effectively. 
+Conda is a package management system similar to pip, but it offers additional features, including an environment management system. Unlike Pip, Conda must be installed externally. With Conda, users can install, run, and update software packages and dependencies just like with Pip. However, the major difference is that Conda includes an environment manager, making it easier and more efficient for users to create virtual environments for different projects. The environment management feature enhances the flexibility and usability of conda, allowing users to isolate project dependencies and manage multiple projects more effectively. 
 
 
 #### Managing Multiple Environments
@@ -93,6 +91,15 @@ When you go to type Conda in your terminal you shell tries to find a shell funct
     ```
     Conda init on MacOS works very similar to that of Windows. This function modifies the '.zshrc' (MacOS shell configuration file) and sets up the necessary environment variables and PATH settings so that the Conda command is recognized when you open a terminal. Refer to the Windows initialization if you want to do more reading on the Conda init function.
 ### Linux
+
+4. Open your Linux terminal, and run the following commands. You can copy with ctrl+c, but make sure you paste with ctrl+shift+V.
+
+```Shell
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+```
 
 ### Verify Conda Installation
 3. After installing and initialiing Conda, locate the test scripts folder above and download the appropriate script for your operating system. Then for Windows open up the powershell and for linux/MacOS open up the terminal. Once in your terminal navigate to the directory where the script was downloaded using the 'cd' command. Once there, type the script's name to run it.
@@ -183,7 +190,7 @@ cd .\py-exercises\     #cd  = change directory
 ```
 
 
-Create a new file called "ex1.py".
+Create a new file called "ex1.py" like this if you're on Windows:
 ```Shell
 New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a python executable.
 ```
@@ -216,6 +223,8 @@ code .\ex1.py
 
 Let's get started with writing your first lines of Python code!
 
+You're going to write two short functions to multiply two matrices together and print out the result to your terminal.
+
 
 1. First, go ahead and import the numpy package, with the alias np.
 
@@ -232,11 +241,15 @@ example = [[1, 2, 3],
         [8, 40, 2],
         [1, 9, 7]]
      
-#This is an example of what a python matrix might look like.
+#This is an example of what a python matrix might look like. 
+
+#A matrix is really just an array of arrays; that's exactly what 
+#we're doing here. It's an array of three elements, where each element
+# is an array of three elements itself!
 ```
 
 
-3. We are going to multiply these matrices and store it in a third.
+3. We are going to store the product in a third matrix.
 In order to do this, create a third 3x3 matrix, and fill it with zeroes.
 
 In order to multiply these matrices, it helps to know the number of rows
@@ -257,10 +270,13 @@ numCols = len(matrix[0]) #gets the number of columns, since we indexed to specif
 
 The outermost layer should iterate 
 through the number of rows in l1, the next layer should iterate through the number of columns in l2, 
-and the final layer should iterate through the number of columns in l1. 
+and the final layer should iterate through the number of columns in l1, which should be the same as the number of columns in l2.
 
 Within the innermost layer, store the multiplied result of the current row index of l1 (the index of the outermost layer)
 and the current column index of l2 (the index of the second layer) in the corresponding row and column index of the third layer.
+
+Essentially, what we're doing is a dot product; For each combination of row i from l1 and column j from l2, the innermost loop 
+calculates the product of the corresponding elements and adds it to the current position [i][j] in the result matrix.
 
 If you're having trouble visualizing this, take a look at the matrix multiplication graph below, and review how to write a for-loop in Python.
 Remember, code is supposed to make computations easier, not harder!
@@ -271,10 +287,9 @@ https://www.mathsisfun.com/algebra/matrix-multiplying.html
 
 ![Error Displaying Image!](./gfx/matrixmult.png "Matrix Multiplication")
 
-
 ```Python
 for i in range(10):
-    #This is what a for-loop looks like. Write an action here to be repeated 10 times.
+    #This is what a for-loop looks like, for reference. You can write an action here to be repeated 10 times.
 
 ```
 
@@ -283,41 +298,11 @@ You can use "print" and a for-loop to iterate through all the rows of the matrix
 print by row.
 
 ```Python
-    print(currentRow) 
-    #currentRow can be a variable that stores a row in a matrix. Or, you can do it
-    #element by element. Get creative!
+    for row in result:
+    print(row)
 ```
 
-That for loop was probably a little confusing to make sense of at first, and probably
-still is. Fortunately, python provides some faster methods of matrix math, including multiplication.
-
-Let's try this in a more efficient way using List Comprehensions. List Comprehensions are a much cleaner
-way of having Python handle arrays with a new handling format. They basically look like this:
-
-![Error Displaying Image!](./gfx/comprehensions.png "comprehensions")
-
-And you can store this result in a variable.
-
-1. The "output" should be the actual multiplication of your matrix (hint: the innermost executable line from your for-loop!)
-
-2. The "collection" should be the for-loops you used before, just written horizontally without returns and indexes. Keep brackets and parentheses in mind, though!
-
-3. You don't need to worry about a "condition"; this would be an if-statement that applied to all three loops, and we don't have that right now.
-
-```Python
-#I think we should drop this segment. This is something I personally wouldn't use if this was my intro to python 
-```
-
-
-```Python
-result = #write your comprehension here!
-```
-
-
-4. And print out the result, which should be the same process you used to print it out before. Can you think of another way to print it out?
-
-
-The last, and most effiecient (and easiest to type) method is using our NumPy package that we imported before.
+The other, and most effiecient (and easiest to type) method is using our NumPy package that we imported before.
 
 
 1. First, store both arrays as numpy array variables. Here's an example:
@@ -332,12 +317,13 @@ For instance, Numpy arrays can be multiplied by simply using the @ operator, ins
 of manually writing out a multiplication algorithm.
 
 2. Multiply both matrices using the @ operator, and store them in a new variable of your choice.
+Then, print out the result.
 
 ```Python
 array1@array2 #It should look something like this. You need to figure out what's missing!
 ```
 
-That should make three methods of matrix multiplication. It's time to see if they worked!
+That should make two methods of matrix multiplication. It's time to see if they worked!
 
 Save your file with ctrl+s, and name your file ex1.py.
 
@@ -365,7 +351,8 @@ That's a quick introduction to the basics of post-flight analysis: A lot of math
 The three methods of matrix multiplication done above are not only different in the way they're typed, but also in the time it takes
 for python to compute the output. To see this, download an adjusted python script here, run it in your terminal, and read the output. 
 Use what you learned from the training to figure out how!
--Tyler: need to put download link for ex1_speed_comp.py here
+
+[Download...](./examples/ex1_speed_comp.py)
 
 Note the difference in speed. What do you see? Which method was the fastest, and why do you think so?
 
@@ -425,27 +412,31 @@ numpy's "linspace" function. For example:
 
 ```Python
 array = np.linspace(start, end, numSamples)
+#"Start" is the start value of the array, "End" is the end value, and "numSamples" is the literal number of elements you want in the array.
 ```
+
+Or, you can reference Numpy's documentation for a better explanation. https://numpy.org/doc/stable/reference/generated/numpy.linspace.html 
+(You'll be using documentation a lot in pfa!)
+
 
 5. Now that you understand how to make an array with linspace, we're going to take it a step further. Make a new cell.
 
 5. a. First, in this new cell, make another array with linspace, and use a for-loop instead of three arguments. In this array, store the number 5 five hundred times. 
-A for-loop within a linspace routine call might look something like this; remember to modify as needed:
 
 ```Python
-array = np.linspace([for i in range (200)]) #this syntax will need to change slightly; pay attention to the "for i".
+array = np.array([5 for _ in range(500)]) 
 ```
 5. b. Now, plot the new array you just made against the first array you made using matplotlibs. The command might look something like this:
 
 ```Python
-arrayGrapher.plot(arrayX, arrayY)
+plt.plot(arrayX, arrayY)
 ```
-Array X will be your X axis, and ArrayY will be your Y axis. Keep in mind, arrayGrapher should be your alias that you imported matplotlibs with.
+Array X will be your X axis, and ArrayY will be your Y axis. 
 
 5. c. Go ahead and title your plot using matplotlibs:
 
 ```Python
-arrayGrapher.title('Pick a name!')
+plt.title('Pick a name!')
 ```
 6. Now that you've made it this far, run all of your cells, one by one, in descending order. Notice how changes slowly take effect. Once you're done,
 change the name of the plot, and re-run the final cell. Notice how you don't need to re-run the entire program to make changes; this is the importance of jupyter!
