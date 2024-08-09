@@ -102,12 +102,13 @@ rm -rf ~/miniconda3/miniconda.sh
 ```
 
 ### Verify Conda Installation
-3. After installing and initialiing Conda, locate the test scripts folder above and download the appropriate script for your operating system. Then for Windows open up the powershell and for linux/MacOS open up the terminal. Once in your terminal navigate to the directory where the script was downloaded using the 'cd' command. Once there, type the script's name to run it.
+3. After installing and initializing Conda, locate the test scripts folder above and download the appropriate script for your operating system. Then for Windows open up the Powershell and for Linux/MacOS open up the terminal. Once in your terminal navigate to the directory where the script was downloaded using the 'cd' command. Once there, type the script's name to run it.
 ```Shell
 .\verify_conda_windows.ps1 #Windows
 ./verify_conda_macos.zsh #MacOS
 ./verify_conda_linux.sh #Linux
 ```
+
 If you encounter a permisson denied error, it likely means that the script doesn't have the necessary execute permisssions. This error will only occur on MacOS/Linux systems as Windows does not have file executable permissions. To resolve this, you can grant execute permissions by using the following command:
 ```Shell
 chmod +x verify_conda_linux.sh #Linux
@@ -120,7 +121,6 @@ chmod +x verify_conda_linux.sh
 ```
 The script checks if Conda is installed and if it has been initialized. If Conda is both installed and initialized the terminal will output "Conda test OK." Otherwise, the script will tell you what is missing, and refer to the steps above if Conda is not initialized or installed.
    
-
 Another way to check if Conda is set up correctly is to run the following below. This will call the Conda shell function and output the version of Conda your system currently has installed.
  ```Shell
 conda --version
@@ -129,7 +129,7 @@ The output should look something like the following.
 ![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
 
 
-4. Here are some useful Conda commands.
+6. Here are some useful Conda commands.
     ```Shell
     conda create --name Name_Of_Environment Python = 3.xx # Create a new Conda environment with Python 3.xx (Python subversion does not need to be specified)
     conda env list # List all the environments on your system
@@ -142,7 +142,6 @@ The output should look something like the following.
     ```
 
 ## Part 2a: Python exercise setup
-
 
 First, we're going to get started with setting up your first Python project: a matrix multiplication program!
 Open your terminal and proceed with the steps below:
@@ -168,7 +167,6 @@ We can install it on our machine by using the Conda commands from above:
 conda install numpy
 ```
 
-
 Open your terminal, and run your first line of python code: Hello world!
 ```Shell
 python -c "print('hello world!')" #"-c" lets you pass a string (the text that comes next) as a python line to your terminal and run it.
@@ -188,7 +186,6 @@ Enter the new folder you just made.
 ```Shell
 cd .\py-exercises\     #cd  = change directory
 ```
-
 
 Create a new file called "ex1.py" like this if you're on Windows:
 ```Shell
@@ -506,6 +503,6 @@ plt.title('Plot 6: Noisy Composite Function')
 
 Your plot should look like this:
 
-![Error Displaying Image!](./gfx/jupyter5.png "sixth plot")
+![Error Displaying Image!](./gfx/jupyter6.png "sixth plot")
 
 That's it! Congratulations and welcome to PFA!
