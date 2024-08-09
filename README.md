@@ -271,9 +271,8 @@ You can use "print" and a for-loop to iterate through all the rows of the matrix
 print by row.
 
 ```Python
-    print(currentRow) 
-    #currentRow can be a variable that stores a row in a matrix. Or, you can do it
-    #element by element. Get creative!
+    for row in result:
+    print(row)
 ```
 
 The other, and most effiecient (and easiest to type) method is using our NumPy package that we imported before.
@@ -291,12 +290,13 @@ For instance, Numpy arrays can be multiplied by simply using the @ operator, ins
 of manually writing out a multiplication algorithm.
 
 2. Multiply both matrices using the @ operator, and store them in a new variable of your choice.
+Then, print out the result.
 
 ```Python
 array1@array2 #It should look something like this. You need to figure out what's missing!
 ```
 
-That should make three methods of matrix multiplication. It's time to see if they worked!
+That should make two methods of matrix multiplication. It's time to see if they worked!
 
 Save your file with ctrl+s, and name your file ex1.py.
 
@@ -324,7 +324,8 @@ That's a quick introduction to the basics of post-flight analysis: A lot of math
 The three methods of matrix multiplication done above are not only different in the way they're typed, but also in the time it takes
 for python to compute the output. To see this, download an adjusted python script here, run it in your terminal, and read the output. 
 Use what you learned from the training to figure out how!
--Tyler: need to put download link for ex1_speed_comp.py here
+
+[Download...](./examples/ex1_speed_comp.py)
 
 Note the difference in speed. What do you see? Which method was the fastest, and why do you think so?
 
@@ -388,10 +389,9 @@ Or, you can reference Numpy's documentation for a better explanation. https://nu
 5. Now that you understand how to make an array with linspace, we're going to take it a step further. Make a new cell.
 
 5. a. First, in this new cell, make another array with linspace, and use a for-loop instead of three arguments. In this array, store the number 5 five hundred times. 
-A for-loop within a linspace routine call might look something like this; remember to modify as needed:
 
 ```Python
-array = np.linspace([for i in range (200)]) #-TFA : need to fix
+array = np.array([5 for _ in range(500)]) 
 ```
 5. b. Now, plot the new array you just made against the first array you made using matplotlibs. The command might look something like this:
 
