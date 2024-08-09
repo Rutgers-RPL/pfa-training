@@ -95,10 +95,10 @@ When you go to type Conda in your terminal you shell tries to find a shell funct
 4. Open your Linux terminal, and run the following commands. You can copy with ctrl+c, but make sure you paste with ctrl+shift+V.
 
 ```Shell
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
+mkdir -p ~/miniconda3  #creates folder for conda installer
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh #Gets conda installer
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3  #runs conda installer
+rm -rf ~/miniconda3/miniconda.sh #deletes conda installer
 ```
 
 ### Verify Conda Installation
