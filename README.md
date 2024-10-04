@@ -87,11 +87,11 @@ If you are more interested in the Conda init function you can do further reading
 Open your terminal and run the following command to install and initialize Conda:
 
 ```Shell
-    curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
-    chmod +x Miniconda3-latest-MacOSX-x86_64.sh
-    bash ./Miniconda3-latest-MacOSX-x86_64.sh -b -p $HOME/miniconda
-    $HOME/miniconda/bin/conda init --all
-    rm Miniconda3-latest-MacOSX-x86_64.sh
+curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+chmod +x Miniconda3-latest-MacOSX-x86_64.sh
+bash ./Miniconda3-latest-MacOSX-x86_64.sh -b -p $HOME/miniconda
+$HOME/miniconda/bin/conda init --all
+rm Miniconda3-latest-MacOSX-x86_64.sh
 ```
 Conda init on MacOS works very similar to that of Windows. This function modifies the '.zshrc' (MacOS shell configuration file) and sets up the necessary environment variables and PATH settings so that the Conda command is recognized when you open a terminal. Refer to the Windows initialization if you want to do more reading on the Conda init function.
 
@@ -146,9 +146,9 @@ The script checks if Conda is installed and if it has been initialized. If Conda
 
 Another way to check if Conda is set up correctly is to run the following below. This will call the Conda shell function and output the version of Conda your system currently has installed.
 
-    ```Shell
-    conda --version
-    ```
+```Shell
+conda --version
+```
 
 The output should look something like the following.
 ![Error Displaying Image!](./gfx/Conda_Install_Verification.png "Installation Verification")
