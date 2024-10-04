@@ -70,41 +70,41 @@ When you go to type Conda in your terminal you shell tries to find a shell funct
 
 ### Windows
 
-    Open a Administrator window of Powershell Once the terminal is open, run the following commands to install and initialize Conda:
-    
-    ```Shell
-    Invoke-WebRequest -Uri "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe" -OutFile "$env:TEMP\Miniconda3-latest-Windows-x86_64.exe"
-    Start-Process "$env:TEMP\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList '/S', '/InstallationType=JustMe', "/AddToPath=1", "/RegisterPython=1", "/D=$env:USERPROFILE\Miniconda3" -Wait
-    & "$env:USERPROFILE\Miniconda3\Scripts\conda.exe" init powershell
-    Remove-Item "$env:TEMP\Miniconda3-latest-Windows-x86_64.exe"
-    ```
-    
-    This step is essential because it sets up Conda in your shell environment, enabling the shell to recognize Conda commands. When you run a Conda command, your shell searches for a function or executable named 'conda' in your PATH directories. If Conda hasn't been properly initialized, your shell won't find the command, leading to a 'conda not found' error.
-    If you are more interested in the Conda init function you can do further reading [here](https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/activation.html)
+Open a Administrator window of Powershell Once the terminal is open, run the following commands to install and initialize Conda:
+
+```Shell
+Invoke-WebRequest -Uri "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe" -OutFile "$env:TEMP\Miniconda3-latest-Windows-x86_64.exe"
+Start-Process "$env:TEMP\Miniconda3-latest-Windows-x86_64.exe" -ArgumentList '/S', '/InstallationType=JustMe', "/AddToPath=1", "/RegisterPython=1", "/D=$env:USERPROFILE\Miniconda3" -Wait
+& "$env:USERPROFILE\Miniconda3\Scripts\conda.exe" init powershell
+Remove-Item "$env:TEMP\Miniconda3-latest-Windows-x86_64.exe"
+```
+
+This step is essential because it sets up Conda in your shell environment, enabling the shell to recognize Conda commands. When you run a Conda command, your shell searches for a function or executable named 'conda' in your PATH directories. If Conda hasn't been properly initialized, your shell won't find the command, leading to a 'conda not found' error.
+If you are more interested in the Conda init function you can do further reading [here](https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/activation.html)
 
 ### MacOS
 
-    Open your terminal and run the following command to install and initialize Conda:
+Open your terminal and run the following command to install and initialize Conda:
 
-        ```Shell
-        curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
-        chmod +x Miniconda3-latest-MacOSX-x86_64.sh
-        bash ./Miniconda3-latest-MacOSX-x86_64.sh -b -p $HOME/miniconda
-        $HOME/miniconda/bin/conda init --all
-        rm Miniconda3-latest-MacOSX-x86_64.sh
-        ```
-    Conda init on MacOS works very similar to that of Windows. This function modifies the '.zshrc' (MacOS shell configuration file) and sets up the necessary environment variables and PATH settings so that the Conda command is recognized when you open a terminal. Refer to the Windows initialization if you want to do more reading on the Conda init function.
+```Shell
+    curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+    chmod +x Miniconda3-latest-MacOSX-x86_64.sh
+    bash ./Miniconda3-latest-MacOSX-x86_64.sh -b -p $HOME/miniconda
+    $HOME/miniconda/bin/conda init --all
+    rm Miniconda3-latest-MacOSX-x86_64.sh
+```
+Conda init on MacOS works very similar to that of Windows. This function modifies the '.zshrc' (MacOS shell configuration file) and sets up the necessary environment variables and PATH settings so that the Conda command is recognized when you open a terminal. Refer to the Windows initialization if you want to do more reading on the Conda init function.
 
 ### Linux
 
 Open your Linux terminal, and run the following commands. You can copy with ctrl+c, but make sure you paste with ctrl+shift+V.
 
-    ```Shell
-    mkdir -p ~/miniconda3  #creates folder for conda installer
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh #Gets conda installer
-    bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3  #runs conda installer
-    rm -rf ~/miniconda3/miniconda.sh #deletes conda installer
-    ```
+```Shell
+mkdir -p ~/miniconda3  #creates folder for conda installer
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh #Gets conda installer
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3  #runs conda installer
+rm -rf ~/miniconda3/miniconda.sh #deletes conda installer
+```
 
 Regardless of your OS, you must **restart** your shell after installing and initializing conda.
 
@@ -112,35 +112,35 @@ Regardless of your OS, you must **restart** your shell after installing and init
 
 After installing and initializing Conda, locate the test scripts folder above and download the appropriate script for your operating system. Then for Windows open up the Powershell and for Linux/MacOS open up the terminal. Once in your terminal navigate to the directory where the script was downloaded using the 'cd' command. Once there, type the script's name to run it.
 
-    ```Shell
-    .\verify_conda_windows.ps1 #Windows
-    ./verify_conda_macos.zsh #MacOS
-    ./verify_conda_linux.sh #Linux
-    ```
+```Shell
+.\verify_conda_windows.ps1 #Windows
+./verify_conda_macos.zsh #MacOS
+./verify_conda_linux.sh #Linux
+```
 
 #### Resolving Permissions Issues
 
-    If you encounter a permission denied error on Mac/Linux, it likely means that the script doesn't have the necessary execute permissions. This sort of permissions error will only occur on MacOS/Linux systems as Windows does not manage permissions in the same way (see below). To resolve this, you can grant execute permissions by using the following command:
+If you encounter a permission denied error on Mac/Linux, it likely means that the script doesn't have the necessary execute permissions. This sort of permissions error will only occur on MacOS/Linux systems as Windows does not manage permissions in the same way (see below). To resolve this, you can grant execute permissions by using the following command:
 
-    ```Shell
-    chmod +x verify_conda_linux.sh #Linux
-    chmod +x verify_conda_macos.zsh #MacOS
-    ```
-    This grants the script execute permission allowing you to run the program. If you would like to learn more about Linux/MacOS file permissions you can do more reading [here](https://www.redhat.com/sysadmin/linux-file-permissions-explained). 
+```Shell
+chmod +x verify_conda_linux.sh #Linux
+chmod +x verify_conda_macos.zsh #MacOS
+```
+This grants the script execute permission allowing you to run the program. If you would like to learn more about Linux/MacOS file permissions you can do more reading [here](https://www.redhat.com/sysadmin/linux-file-permissions-explained). 
 
-    If you run into permission issues on Windows, it's because, by default, *Powershell* prohibits the execution of downloaded scripts, even if you, the user, have the authorization to execute that file. To fix this, you'll need to instruct Powershell to allow you to run scripts with the following options.
+If you run into permission issues on Windows, it's because, by default, *Powershell* prohibits the execution of downloaded scripts, even if you, the user, have the authorization to execute that file. To fix this, you'll need to instruct Powershell to allow you to run scripts with the following options.
 
-    To allow execution of a specific file **only** in the *current* Powershell session.
-    
-    ```Shell
-        Unblock-File -Path .\test-scripts\verify_conda_windows.ps1
-    ```
+To allow execution of a specific file **only** in the *current* Powershell session.
 
-    To allow universal execution of scripts in all Powershell sessions. (Only do this if you frequently run scripts AND you know what your doing.)
+```Shell
+    Unblock-File -Path .\test-scripts\verify_conda_windows.ps1
+```
 
-    ```Shell
-        Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-    ```
+To allow universal execution of scripts in all Powershell sessions. (Only do this if you frequently run scripts AND you know what your doing.)
+
+```Shell
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+```
 
 The script checks if Conda is installed and if it has been initialized. If Conda is both installed and initialized the terminal will output "Conda test OK." Otherwise, the script will tell you what is missing, and refer to the steps above if Conda is not initialized or installed.
 
@@ -155,16 +155,16 @@ The output should look something like the following.
 
 Here are some useful Conda commands.
 
-    ```Shell
-    conda create --name <env_name> Python = 3.xx # Create a new Conda environment with Python 3.xx (Python subversion does not need to be specified)
-    conda env list # List all the environments on your system
-    conda list # List all packages and versions installed in the active environment
-    conda install <package_name> # Install a package in the current environment
-    conda activate env_name # Activate an environment
-    conda deactivate # Switch to the base environment
-    conda env remove --name <env_name> # Delete an environment and everything in it
-    conda remove <package_name> # Uninstall package in environment
-    ```
+```Shell
+conda create --name <env_name> Python = 3.xx # Create a new Conda environment with Python 3.xx (Python subversion does not need to be specified)
+conda env list # List all the environments on your system
+conda list # List all packages and versions installed in the active environment
+conda install <package_name> # Install a package in the current environment
+conda activate env_name # Activate an environment
+conda deactivate # Switch to the base environment
+conda env remove --name <env_name> # Delete an environment and everything in it
+conda remove <package_name> # Uninstall package in environment
+```
 
 ## Part 2a: Python exercise setup
 
@@ -173,81 +173,81 @@ Open your terminal and proceed with the steps below:
 
 First, we will set up a virtual environment that contains Python and the relevant packages before writing any code. Remember it is good practice to create a new environment for each project.
 
-    ```Shell
-    conda create --name pfa_training
-    ```
+```Shell
+conda create --name pfa_training
+```
 
 Once our Conda environment has been created we must activate it allowing us to manage our environment and utilize any installed packages. A nice feature built into Conda is it will specify the current environment in parenthesis on the left hand side of your terminal.
 
-    ```Shell
-    conda activate pfa_training
-    ```
+```Shell
+conda activate pfa_training
+```
 
 Now check your python version to make sure it's installed and up to date.
 
-    ```Shell
-    python --version
-    ```
+```Shell
+python --version
+```
 
 Numpy is a popular python package that makes it a lot easier to work with arrays and matrices, including the complicated math that comes with them.
 We can install it on our machine by using the Conda commands from above:
 
-    ```Shell
-    conda install numpy
-    ```
+```Shell
+conda install numpy
+```
 
 Open your terminal, and run your first line of python code: Hello world!
 
-    ```Shell
-    python -c "print('hello world!')" #"-c" lets you pass a string (the text that comes next) as a python line to your terminal and run it.
-    ```
+```Shell
+python -c "print('hello world!')" #"-c" lets you pass a string (the text that comes next) as a python line to your terminal and run it.
+```
 
 Enter your RRPL directory within your Projects directory.
 
-    ```Shell
-    cd {PATH_TO_PROJECTS_FOLDER}\RRPL\  #"." is a symbol for the parent folder you're currently in.
-    ```
+```Shell
+cd {PATH_TO_PROJECTS_FOLDER}\RRPL\  #"." is a symbol for the parent folder you're currently in.
+```
 
 Make a new folder called py_exercises.
 
-    ```Shell
-    mkdir py-exercises # mkdir = make directory
-    ```
+```Shell
+mkdir py-exercises # mkdir = make directory
+```
 
 Enter the new folder you just made.
 
-    ```Shell
-    cd .\py-exercises\     #cd  = change directory
-    ```
+```Shell
+cd .\py-exercises\     #cd  = change directory
+```
 
 Create a new file called "ex1.py" like this if you're on Windows:
 
-    ```Shell
-    New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a python executable.
-    ```
+```Shell
+New-Item -ItemType File -Name "ex1.py" #A file that ends with .py is a python executable.
+```
 
 If you're on a unix system (Linux, or MacOS which is based on Linux):
 
-    ```Shell
-    nano ex1.py
-    #follow with ctrl+o (save), and ctrl+x (exit).
-    ```
+```Shell
+nano ex1.py
+#follow with ctrl+o (save), and ctrl+x (exit).
+```
 
 If you don't have VSCode installed, go ahead and open the file in your notepad.
 
-    ```Shell
-    notepad.exe .\ex1.py
+```Shell
+notepad.exe .\ex1.py
 
-    #if on unix, run:
+#if on unix, run:
 
-    nano ex1.py
-    ```
+nano ex1.py
+```
 
-    If you do have vscode installed, open it with vscode. (Hint: get VSCode.)
-    
-    ```Shell
-    code .\ex1.py
-    ```
+If you do have vscode installed, open it with vscode. (Hint: get VSCode.)
+
+```Shell
+code .\ex1.py
+```
 
 ## Part 2: Simple Python Exercise
 
